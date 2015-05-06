@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    var temp = ["Andy", "Bob", "Chris"]
     @IBOutlet var mainTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +23,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3
+        return temp.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("listcell") as! UITableViewCell
-        cell.textLabel?.text = "ClickToChet"
+        cell.textLabel?.text = temp[indexPath.row]
         return cell
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "chat" {
+            var chatController:ChatController = segue.destinationViewController as! ChatController
+            var index = mainTableView.indexPathForSelectedRow()!.row
+            chatController.navigationItem.title = temp[index]
+        }
+            
+    }
 }
 
