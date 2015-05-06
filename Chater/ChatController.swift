@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     var hsty:NSMutableArray = NSMutableArray()
     
@@ -20,6 +20,7 @@ class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        chatTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +37,21 @@ class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        var aTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
+        self.mainTableView.transform = aTransform
+        self.chatTextField.transform = aTransform
+        self.chatButton.transform = aTransform
+        return true
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool{
+        var aTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
+        self.mainTableView.transform = aTransform
+        self.chatTextField.transform = aTransform
+        self.chatButton.transform = aTransform
+        return true
+    }
 
     @IBAction func send(sender: AnyObject) {
         chatTextField.resignFirstResponder()

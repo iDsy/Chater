@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("listcell") as! UITableViewCell
-        cell.textLabel?.text = "..."
+        cell.textLabel?.text = "ClickToChet"
         return cell
     }
 
