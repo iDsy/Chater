@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CFBE19841AFB6E6F006FFCFC /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE19831AFB6E6F006FFCFC /* MyCell.swift */; };
+		CFBE19861AFB70D8006FFCFC /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = CFBE19851AFB70D8006FFCFC /* test.png */; };
+		CFBE19881AFB7482006FFCFC /* SystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE19871AFB7482006FFCFC /* SystemCell.swift */; };
 		CFBFD8E61AF9FCB8001B224F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD8E51AF9FCB8001B224F /* AppDelegate.swift */; };
 		CFBFD8E81AF9FCB8001B224F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBFD8E71AF9FCB8001B224F /* ViewController.swift */; };
 		CFBFD8EB1AF9FCB8001B224F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBFD8E91AF9FCB8001B224F /* Main.storyboard */; };
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CFBE19831AFB6E6F006FFCFC /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		CFBE19851AFB70D8006FFCFC /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		CFBE19871AFB7482006FFCFC /* SystemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemCell.swift; sourceTree = "<group>"; };
 		CFBFD8E01AF9FCB8001B224F /* Chater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBFD8E41AF9FCB8001B224F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFBFD8E51AF9FCB8001B224F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CFBE19821AFB6E23006FFCFC /* Useful */ = {
+			isa = PBXGroup;
+			children = (
+				CFBFD9051AF9FD2F001B224F /* ChatController.swift */,
+				CFBE19871AFB7482006FFCFC /* SystemCell.swift */,
+				CFBE19831AFB6E6F006FFCFC /* MyCell.swift */,
+				CFBFD8E91AF9FCB8001B224F /* Main.storyboard */,
+				CFBFD8E71AF9FCB8001B224F /* ViewController.swift */,
+			);
+			name = Useful;
+			sourceTree = "<group>";
+		};
 		CFBFD8D71AF9FCB8001B224F = {
 			isa = PBXGroup;
 			children = (
@@ -79,10 +97,8 @@
 		CFBFD8E21AF9FCB8001B224F /* Chater */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE19821AFB6E23006FFCFC /* Useful */,
 				CFBFD9071AF9FD3F001B224F /* Useless */,
-				CFBFD9051AF9FD2F001B224F /* ChatController.swift */,
-				CFBFD8E71AF9FCB8001B224F /* ViewController.swift */,
-				CFBFD8E91AF9FCB8001B224F /* Main.storyboard */,
 				CFBFD8E31AF9FCB8001B224F /* Supporting Files */,
 			);
 			path = Chater;
@@ -91,6 +107,7 @@
 		CFBFD8E31AF9FCB8001B224F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFBE19851AFB70D8006FFCFC /* test.png */,
 				CFBFD8E41AF9FCB8001B224F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -206,6 +223,7 @@
 				CFBFD8EB1AF9FCB8001B224F /* Main.storyboard in Resources */,
 				CFBFD8F01AF9FCB8001B224F /* LaunchScreen.xib in Resources */,
 				CFBFD8ED1AF9FCB8001B224F /* Images.xcassets in Resources */,
+				CFBE19861AFB70D8006FFCFC /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFBFD8E81AF9FCB8001B224F /* ViewController.swift in Sources */,
+				CFBE19841AFB6E6F006FFCFC /* MyCell.swift in Sources */,
 				CFBFD8E61AF9FCB8001B224F /* AppDelegate.swift in Sources */,
+				CFBE19881AFB7482006FFCFC /* SystemCell.swift in Sources */,
 				CFBFD9061AF9FD2F001B224F /* ChatController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +441,7 @@
 				CFBFD9011AF9FCB8001B224F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CFBFD9021AF9FCB8001B224F /* Build configuration list for PBXNativeTarget "ChaterTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +450,7 @@
 				CFBFD9041AF9FCB8001B224F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

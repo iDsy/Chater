@@ -11,7 +11,7 @@ import UIKit
 class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     var hsty:NSMutableArray = NSMutableArray()
-    
+    var needMove = false
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatButton: UIButton!
@@ -26,35 +26,50 @@ class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+// tableview
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return hsty.count
+        return hsty.count + 1
     }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mycell") as! UITableViewCell
-        cell.textLabel?.text = hsty[indexPath.row] as! String
-        return cell
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None; //cell无边框
+        if indexPath.row == 0 {
+            var cell:SystemCell = tableView.dequeueReusableCellWithIdentifier("systemcell") as! SystemCell
+            cell.mainLabel.text = "Let's chat!"
+            return cell
+        }else{
+            var cell:MyCell = tableView.dequeueReusableCellWithIdentifier("mycell") as! MyCell
+            var n = indexPath.row - 1
+            cell.msgLabel.text = hsty[n] as! String
+            return cell
+        }
     }
-    
+    //view上移
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        var aTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
-        self.mainTableView.transform = aTransform
-        self.chatTextField.transform = aTransform
-        self.chatButton.transform = aTransform
+        var chatTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
+        self.chatTextField.transform = chatTransform
+        self.chatButton.transform = chatTransform
+        if hsty.count >= 1 {
+            var tableTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
+            self.mainTableView.transform = tableTransform
+            needMove = true
+        }
         return true
     }
-    
+    //view回到原来位置
     func textFieldShouldEndEditing(textField: UITextField) -> Bool{
-        var aTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
-        self.mainTableView.transform = aTransform
-        self.chatTextField.transform = aTransform
-        self.chatButton.transform = aTransform
+        var chatTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
+        self.chatTextField.transform = chatTransform
+        self.chatButton.transform = chatTransform
+        if needMove {
+            var tableTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
+            self.mainTableView.transform = tableTransform
+            needMove = false
+        }
         return true
     }
 
     @IBAction func send(sender: AnyObject) {
-        chatTextField.resignFirstResponder()
+        //chatTextField.resignFirstResponder()
         hsty.addObject(chatTextField.text)
         chatTextField.text = ""
         self.mainTableView.reloadData()
