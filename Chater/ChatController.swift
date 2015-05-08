@@ -43,36 +43,41 @@ class ChatController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return cell
         }
     }
-    //view上移
+    //弹出键盘view变换
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        // textfield和button上移
         var chatTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
         self.chatTextField.transform = chatTransform
         self.chatButton.transform = chatTransform
+        // table选择性缩小
         if hsty.count >= 1 {
-            var tableTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, -256);
-            self.mainTableView.transform = tableTransform
+            self.mainTableView.frame.size.height = self.mainTableView.frame.height - 256
+            self.mainTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: hsty.count, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             needMove = true
         }
         return true
     }
-    //view回到原来位置
+    //收回键盘view变换
     func textFieldShouldEndEditing(textField: UITextField) -> Bool{
+        // textfield和button下移
         var chatTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
         self.chatTextField.transform = chatTransform
         self.chatButton.transform = chatTransform
+        // table复原
         if needMove {
-            var tableTransform:CGAffineTransform = CGAffineTransformMakeTranslation(0, 0);
-            self.mainTableView.transform = tableTransform
+            self.mainTableView.frame.size.height = self.mainTableView.frame.height + 256
             needMove = false
         }
         return true
     }
 
     @IBAction func send(sender: AnyObject) {
-        //chatTextField.resignFirstResponder()
+        chatTextField.resignFirstResponder()
         hsty.addObject(chatTextField.text)
         chatTextField.text = ""
         self.mainTableView.reloadData()
+        // 滑到最后的位置
+        self.mainTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: hsty.count, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
     }
     
 
